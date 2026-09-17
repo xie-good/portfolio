@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>谢勤光 · Qinguang Xie | Python 后端 / AI 应用开发</title>
+<meta name="description" content="谢勤光的个人作品集：Python 后端开发、AI 应用与 Agent 开发、软件测试。">
+<style>
+  :root {
+    --bg: #f6f8fb;
+    --surface: #ffffff;
+    --text: #0f172a;
+    --muted: #55627a;
+    --accent: #4f46e5;
+    --accent-light: #eef2ff;
+    --border: #e5e9f2;
+    --radius: 14px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+  /* 导航 */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(255,255,255,.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .container {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  nav .logo { font-weight: 700; font-size: 17px; color: var(--text); }
+  nav .logo span { color: var(--accent); }
+  nav ul { display: flex; gap: 26px; list-style: none; }
+  nav ul a { color: var(--muted); font-size: 15px; }
+  nav ul a:hover { color: var(--accent); text-decoration: none; }
+
+  /* Hero */
+  header.hero { padding: 72px 0 56px; }
+  .hero-grid { display: flex; gap: 36px; align-items: center; flex-wrap: wrap; }
+  .avatar {
+    width: 132px; height: 132px; border-radius: 50%;
+    border: 4px solid #fff; box-shadow: 0 8px 28px rgba(79,70,229,.22);
+    flex-shrink: 0;
+  }
+  .hero h1 { font-size: 40px; letter-spacing: .5px; }
+  .hero .en { color: var(--muted); font-size: 16px; margin-top: 2px; }
+  .hero .roles { display: flex; gap: 10px; margin: 16px 0 14px; flex-wrap: wrap; }
+  .role {
+    background: var(--accent-light); color: var(--accent);
+    padding: 5px 14px; border-radius: 999px; font-size: 14px; font-weight: 600;
+  }
+  .hero p.intro { color: var(--muted); max-width: 640px; }
+  .hero .links { margin-top: 22px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 22px; border-radius: 10px; font-size: 15px; font-weight: 600;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover { text-decoration: none; transform: translateY(-2px); }
+  .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 6px 18px rgba(79,70,229,.35); }
+  .btn-ghost { background: #fff; color: var(--text); border: 1px solid var(--border); }
+
+  /* 区块 */
+  section { padding: 54px 0; }
+  section + section { border-top: 1px solid var(--border); }
+  h2.title {
+    font-size: 26px; margin-bottom: 26px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  h2.title::before {
+    content: ""; width: 6px; height: 24px; border-radius: 3px;
+    background: var(--accent); display: inline-block;
+  }
+
+  /* 关于 */
+  .about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 28px; }
+  .about-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 26px 28px;
+  }
+  .about-card h3 { font-size: 17px; margin-bottom: 12px; }
+  .about-card p { color: var(--muted); font-size: 15px; }
+  .edu-item { display: flex; gap: 14px; align-items: flex-start; }
+  .edu-item .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); margin-top: 8px; flex-shrink: 0;
+  }
+
+  /* 技能 */
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .skill-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 22px 24px;
+  }
+  .skill-card h3 { font-size: 16px; margin-bottom: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    background: var(--bg); border: 1px solid var(--border);
+    padding: 4px 12px; border-radius: 8px; font-size: 13.5px; color: var(--muted);
+  }
+
+  /* 项目 */
+  .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .project {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px 26px;
+    display: flex; flex-direction: column; gap: 12px;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .project:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(15,23,42,.08); }
+  .project .p-head { display: flex; justify-content: space-between; align-items: center; }
+  .project h3 { font-size: 18px; }
+  .project .lang {
+    font-size: 12.5px; color: var(--muted);
+    background: var(--bg); padding: 3px 10px; border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .project p { color: var(--muted); font-size: 14.5px; flex: 1; }
+  .project .p-link { font-size: 14px; font-weight: 600; }
+
+  /* 联系 */
+  .contact-box {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    border-radius: var(--radius); color: #fff;
+    padding: 40px 44px; display: flex; justify-content: space-between;
+    align-items: center; gap: 24px; flex-wrap: wrap;
+  }
+  .contact-box h3 { font-size: 22px; margin-bottom: 8px; }
+  .contact-box p { opacity: .88; font-size: 15px; }
+  .contact-box .btn-primary { background: #fff; color: var(--accent); box-shadow: none; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 26px 0; text-align: center;
+    color: var(--muted); font-size: 14px;
+  }
+
+  @media (max-width: 780px) {
+    .hero h1 { font-size: 30px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .projects { grid-template-columns: 1fr; }
+    nav ul { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="logo">谢勤光<span>.dev</span></div>
+    <ul>
+      <li><a href="#about">关于</a></li>
+      <li><a href="#skills">技术栈</a></li>
+      <li><a href="#projects">项目</a></li>
+      <li><a href="#contact">联系</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <img class="avatar" src="https://avatars.githubusercontent.com/u/133795502?v=4" alt="谢勤光头像">
+    <div>
+      <h1>谢勤光</h1>
+      <div class="en">Qinguang Xie · Python Backend / AI Application Developer</div>
+      <div class="roles">
+        <span class="role">Python 后端</span>
+        <span class="role">AI 应用开发</span>
+        <span class="role">Agent 开发</span>
+        <span class="role">软件测试</span>
+      </div>
+      <p class="intro">
+        广州南方学院在读学生，专注于 Python 后端与 AI 应用开发。
+        喜欢把大模型能力落到真实场景里——自动客服、电商智能体、语境化学习工具，
+        也写过 C 语言的数据结构项目。正在寻找后端 / AI 应用开发方向的实习与校招机会。
+      </p>
+      <div class="links">
+        <a class="btn btn-primary" href="https://github.com/xie-good" target="_blank" rel="noopener">
+          GitHub @xie-good
+        </a>
+        <a class="btn btn-ghost" href="#projects">查看项目 ↓</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <h2 class="title">关于我</h2>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>开发者简介</h3>
+        <p>
+          我是一名热爱工程实践的在校学生开发者。从 C 语言数据结构课程项目入门，
+          到如今独立完成多个 Python 应用：包括 7×24 小时无人值守的闲鱼智能客服、
+          电商场景智能体，以及结合大模型的语境记单词工具。
+          我关注工程质量——写测试、用 Git 管理版本、在 GitHub 上沉淀每一个项目。
+          相信「做出能用的东西」是最好的学习方式。
+        </p>
+      </div>
+      <div class="about-card">
+        <h3>教育经历</h3>
+        <div class="edu-item">
+          <div class="dot"></div>
+          <div>
+            <strong>广州南方学院</strong><br>
+            <span style="color:var(--muted);font-size:14.5px;">本科在读 · 2027 届</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <h2 class="title">技术栈</h2>
+    <div class="skills">
+      <div class="skill-card">
+        <h3>语言</h3>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">C</span>
+          <span class="tag">SQL</span>
+          <span class="tag">HTML / CSS / JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>后端与 AI</h3>
+        <div class="tags">
+          <span class="tag">FastAPI / Flask</span>
+          <span class="tag">LLM API 应用</span>
+          <span class="tag">Agent 开发</span>
+          <span class="tag">Prompt 工程</span>
+          <span class="tag">MySQL / Redis</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>工程与工具</h3>
+        <div class="tags">
+          <span class="tag">Git / GitHub</span>
+          <span class="tag">pytest</span>
+          <span class="tag">Linux</span>
+          <span class="tag">数据结构与算法</span>
+          <span class="tag">接口测试</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <h2 class="title">开源项目</h2>
+    <div class="projects">
+      <div class="project">
+        <div class="p-head">
+          <h3>闲鱼智能客服</h3>
+          <span class="lang">Python</span>
+        </div>
+        <p>
+          面向闲鱼卖家的自动客服 Agent：自动监听买家消息并调用大模型生成回复，
+          实现 7×24 小时无人值守应答，让个人卖家不错过任何一条询价。
+        </p>
+        <a class="p-link" href="https://github.com/xie-good/xianyu-agent" target="_blank" rel="noopener">GitHub 仓库 →</a>
+      </div>
+
+      <div class="project">
+        <div class="p-head">
+          <h3>电商智能体</h3>
+          <span class="lang">Python</span>
+        </div>
+        <p>
+          电商场景的智能体应用，探索大模型在商品咨询、订单辅助等环节的自动化能力。
+        </p>
+        <a class="p-link" href="https://github.com/xie-good/Agent-commerce" target="_blank" rel="noopener">GitHub 仓库 →</a>
+      </div>
+
+      <div class="project">
+        <div class="p-head">
+          <h3>语境记单词（learn-ETC4）</h3>
+          <span class="lang">Python</span>
+        </div>
+        <p>
+          基于语境记忆法的背单词工具：利用 AI 根据目标单词推测并生成更合适的记忆语境，
+          把孤立背词变成场景化记忆。
+        </p>
+        <a class="p-link" href="https://github.com/xie-good/learn-ETC4" target="_blank" rel="noopener">GitHub 仓库 →</a>
+      </div>
+
+      <div class="project">
+        <div class="p-head">
+          <h3>简易文本编辑器</h3>
+          <span class="lang">C</span>
+        </div>
+        <p>
+          用 C 语言实现的文本编辑器，基于链表与栈等基础数据结构完成编辑核心功能，
+          是我对「造轮子理解原理」的第一次完整实践。
+        </p>
+        <a class="p-link" href="https://github.com/xie-good/editor" target="_blank" rel="noopener">GitHub 仓库 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-box">
+      <div>
+        <h3>欢迎交流</h3>
+        <p>实习 / 校招机会、项目合作，或者单纯聊技术，都欢迎通过 GitHub 找到我。</p>
+      </div>
+      <a class="btn btn-primary" href="https://github.com/xie-good" target="_blank" rel="noopener">
+        访问我的 GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 谢勤光 Qinguang Xie · Powered by GitHub Pages
+</footer>
+
+</body>
+</html>
